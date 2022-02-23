@@ -4,12 +4,7 @@
 body {
     font-family: 'Rubik', sans-serif;
     background-color: #0d1323;
-    color: #FFFFFF;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    color: #FFFFFF;   
 }
 body:active{
     cursor: pointer;
@@ -20,6 +15,7 @@ main {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 30px;
+    margin: 100px auto;
 }
 .cartao-perfil {
     grid-row: span 2;
@@ -130,6 +126,21 @@ nav li {
     content: url(./images/icon-ellipsis.svg);
     margin-left: auto;
 }
+
+@media screen and (min-width:1400px) {
+    body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+    main {
+        margin: 10px;
+    }
+} 
+
+
 
 
 @media screen and (max-width:1400px) {
