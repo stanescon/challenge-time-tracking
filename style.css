@@ -1,0 +1,189 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #0d1323;
+    color: #FFFFFF;
+}
+body:active{
+    cursor: pointer;
+}
+main {
+    width: 80%;
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+}
+.cartao-perfil {
+    grid-row: span 2;
+    background-color: #1d204b;
+    border-radius: 15px;
+}
+.work {
+    background-color: #ff8b64;
+    border-radius: 15px;
+}
+.play {
+    background-color: #56c2e6;
+    border-radius: 15px;
+}
+.study {
+    background-color: #ff5e7d;
+    border-radius: 15px;
+}
+.exercise {
+    background-color: #4bcf83;
+    border-radius: 15px;;
+}
+.social {
+    background-color: #7235d1;
+    border-radius: 15px;
+}
+.self-care {
+    background-color: #f1c75b;
+    border-radius: 15px;   
+}
+.work, .play, .study, .social, .exercise, .self-care {
+    position: relative;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.informacao {
+    position: absolute;
+    bottom: -2px;
+    background-color: #1d204b;
+    border-radius: 15px;
+    height: 80%;
+    width: 100%;
+    line-height: 3rem;
+    padding: 35px ;
+    font-weight: 300;
+}
+.informacao:active {
+    background-color: #34397b;
+}
+.informacao-perfil {
+    padding: 40px;
+    background-color: #5746ea;
+    border-radius: 15px;
+}
+.imagem-perfil {
+    width: 50%;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    border: 3px solid #FFFFFF;
+}
+.usuario {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 3rem;
+    margin: 20px 0 ;
+}
+.menu {
+    padding: 20px 0;
+}
+nav a {
+    color: #757abc;
+    text-decoration: none;
+    margin-left: 40px;
+}
+nav li {
+    margin: 20px 0;
+    /* line-height: 2rem; */
+}
+.botao-ativo {
+    color: #FFFFFF;
+}
+.icon-work, .icon-play, .icon-study, .icon-social, .icon-self-care {
+    width: 75px;
+    object-fit: cover;
+    align-self: end;
+    object-position: 0px -9px;
+}
+.icon-exercise {
+    width: 75px;
+    object-fit: cover;
+    align-self: end;
+    object-position: 0px 0px;
+}
+.oculto {
+    display: none;
+}
+.hora-principal {
+    font-size: 3rem;
+}
+.titulo-informacao {
+    display: flex;
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.titulo-informacao::after {
+    content: url(./images/icon-ellipsis.svg);
+    margin-left: auto;
+}
+
+
+@media screen and (max-width:1440px) {
+    .painel {
+        width: 315px;
+        display: flex;
+        flex-direction: column;
+    }
+    .cartao-perfil {
+        height: 215px;
+    }
+    .informacao-perfil {
+        height: 150px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1fr 1fr;
+        padding: 20px;
+    }
+    .imagem-perfil {
+        grid-row: span 2;
+        justify-self: self-start;
+        margin: auto 0px;
+        width: 90%;
+    }
+    .usuario {
+        font-size: 1.5rem;
+        margin: 0px;
+        align-self: self-start;
+        
+    }
+    .imagem-perfil + p {
+        align-self: self-end;
+    }
+    ul {
+        display: flex;
+    }
+    nav li {
+        margin: 10px 0;
+    }
+    .work, .play, .study, .social, .exercise, .self-care {
+        height: 150px;
+    }
+    .informacao {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr;
+        align-items: center;
+        padding: 15px;
+        line-height: normal;
+        width: 317px;
+        left: -1px;
+    }
+    .titulo-informacao {
+        grid-column: span 2;
+        margin-bottom: 0px;
+    }
+    .hora-ultimo-dia, .hora-ultima-semana, .hora-ultimo-mes {
+        justify-self: self-end;
+        text-align: end;
+    }
+}

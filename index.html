@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Time tracking dashboard</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; margin: 10px;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+    </style>
+</head>
+<body>
+  <main class="painel">
+    <div class="cartao-perfil">
+      <div class="informacao-perfil">
+        <img src="./images/image-jeremy.png" class="imagem-perfil">
+        <p> Report for</p>
+        <p class="usuario"> Jeremy Robson</p>
+      </div>
+      <div class="menu">
+        <nav>
+          <ul>
+              <li><a href="#" class="item-menu menu-dia">Daily</a></li>
+              <li><a href="#" class="item-menu menu-semana botao-ativo">Weekly</a></li>
+              <li><a href="#" class="item-menu menu-mes">Monthly</a></li>
+          </ul>
+      </nav>
+      </div>
+    </div>
+    
+    <div class="work">
+        <img src="./images/icon-work.svg" class="icon-work">
+      
+        <div class="informacao">
+          <h1 class="titulo-informacao">Work</h1>
+          <p class="hora hora-principal hora-principal-dia oculto"> 5hr </p>
+          <p class="hora hora-principal hora-principal-semana">32hrs</p>
+          <p class="hora hora-principal hora-principal-mes oculto"> 103hrs </p>
+          <p class="hora hora-ultimo-dia oculto"> Last day - 7hrs </p>
+          <p class="hora hora-ultima-semana">Last Week - 36hrs</p>
+          <p class="hora hora-ultimo-mes oculto">Last Monthly - 128hrs</p>
+        </div>
+    </div>
+
+    <div class="play">
+      <img src="./images/icon-play.svg" class="icon-play">
+      
+      <div class="informacao">
+        <h1 class="titulo-informacao">Play</h1>
+        <p class="hora hora-principal hora-principal-dia oculto"> 1hr </p>
+        <p class="hora hora-principal hora-principal-semana">10hrs</p>
+        <p class="hora hora-principal hora-principal-mes oculto"> 23hrs </p>
+        <p class="hora hora-ultimo-dia oculto"> Last day - 2hrs </p>
+        <p class="hora hora-ultima-semana">Last Week - 8hrs</p>
+        <p class="hora hora-ultimo-mes oculto">Last Monthly - 29hrs</p>    
+      </div>
+    </div>
+
+    <div class="study">      
+      <img src="./images/icon-study.svg" class="icon-study">
+      
+      <div class="informacao">
+        <h1 class="titulo-informacao">Study</h1>
+        <p class="hora hora-principal hora-principal-dia oculto"> 0hr </p>
+        <p class="hora hora-principal hora-principal-semana">4hrs</p>
+        <p class="hora hora-principal hora-principal-mes oculto"> 13hrs </p>
+        <p class="hora hora-ultimo-dia oculto"> Last day - 1hrs </p>
+        <p class="hora hora-ultima-semana">Last Week - 7hrs</p>
+        <p class="hora hora-ultimo-mes oculto">Last Monthly - 19hrs</p>  
+      </div>
+    </div>
+
+    <div class="exercise">
+      <img src="./images/icon-exercise.svg" class="icon-exercise">
+
+      <div class="informacao">
+        <h1 class="titulo-informacao">Exercise</h1>
+        <p class="hora hora-principal hora-principal-dia oculto"> 1hr </p>
+        <p class="hora hora-principal hora-principal-semana">4hrs</p>
+        <p class="hora hora-principal hora-principal-mes oculto"> 11hrs </p>
+        <p class="hora hora-ultimo-dia oculto"> Last day - 1hrs </p>
+        <p class="hora hora-ultima-semana">Last Week - 5hrs</p>
+        <p class="hora hora-ultimo-mes oculto">Last Monthly - 18hrs</p>
+      </div>
+    </div>
+
+    <div class="social">
+      <img src="./images/icon-social.svg" class="icon-social">
+
+      <div class="informacao">
+        <h1 class="titulo-informacao">Social</h1>
+        <p class="hora hora-principal hora-principal-dia oculto"> 1hr </p>
+        <p class="hora hora-principal hora-principal-semana">5hrs</p>
+        <p class="hora hora-principal hora-principal-mes oculto"> 21hrs </p>
+        <p class="hora hora-ultimo-dia oculto"> Last day - 3hrs </p>
+        <p class="hora hora-ultima-semana">Last Week - 10hrs</p>
+        <p class="hora hora-ultimo-mes oculto">Last Monthly - 23hrs</p>
+      </div>
+    </div>
+    
+    <div class="self-care">
+      <img src="./images/icon-self-care.svg" class="icon-self-care">
+
+      <div class="informacao">
+        <h1 class="titulo-informacao">Self Care</h1>
+        <p class="hora hora-principal hora-principal-dia oculto"> 0hr </p>
+        <p class="hora hora-principal hora-principal-semana">2hrs</p>
+        <p class="hora hora-principal hora-principal-mes oculto"> 7hrs </p>
+        <p class="hora hora-ultimo-dia oculto"> Last day - 1hrs </p>
+        <p class="hora hora-ultima-semana">Last Week - 2hrs</p>
+        <p class="hora hora-ultimo-mes oculto">Last Monthly - 11hrs</p>
+      </div>
+    </div>
+
+  </main>
+
+
+
+
+
+
+
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Natália Jordana</a>.
+  </div>
+<script src="./script.js"></script>  
+</body>
+</html>
