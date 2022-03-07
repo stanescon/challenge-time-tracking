@@ -41,7 +41,10 @@
         <img src="./images/icon-work.svg" class="icon-work">
       
         <div class="informacao">
-          <h1 class="titulo-informacao">Work</h1>
+          <div class="titulo--informacao">
+            <h1 class="titulo-informacao">Work</h1>
+            <img src="./images/icon-ellipsis.svg" class="icon-conf">
+          </div>
           <p class="hora hora-principal hora-principal-dia oculto"> 5hr </p>
           <p class="hora hora-principal hora-principal-semana">32hrs</p>
           <p class="hora hora-principal hora-principal-mes oculto"> 103hrs </p>
@@ -55,7 +58,10 @@
       <img src="./images/icon-play.svg" class="icon-play">
       
       <div class="informacao">
-        <h1 class="titulo-informacao">Play</h1>
+        <div class="titulo--informacao">
+          <h1 class="titulo-informacao">Play</h1>
+          <img src="./images/icon-ellipsis.svg" class="icon-conf">
+        </div>
         <p class="hora hora-principal hora-principal-dia oculto"> 1hr </p>
         <p class="hora hora-principal hora-principal-semana">10hrs</p>
         <p class="hora hora-principal hora-principal-mes oculto"> 23hrs </p>
@@ -69,7 +75,10 @@
       <img src="./images/icon-study.svg" class="icon-study">
       
       <div class="informacao">
-        <h1 class="titulo-informacao">Study</h1>
+        <div class="titulo--informacao">
+          <h1 class="titulo-informacao">Study</h1>
+          <img src="./images/icon-ellipsis.svg" class="icon-conf">
+        </div>
         <p class="hora hora-principal hora-principal-dia oculto"> 0hr </p>
         <p class="hora hora-principal hora-principal-semana">4hrs</p>
         <p class="hora hora-principal hora-principal-mes oculto"> 13hrs </p>
@@ -83,7 +92,10 @@
       <img src="./images/icon-exercise.svg" class="icon-exercise">
 
       <div class="informacao">
-        <h1 class="titulo-informacao">Exercise</h1>
+        <div class="titulo--informacao">
+          <h1 class="titulo-informacao">Exercise</h1>
+          <img src="./images/icon-ellipsis.svg" class="icon-conf">
+        </div>
         <p class="hora hora-principal hora-principal-dia oculto"> 1hr </p>
         <p class="hora hora-principal hora-principal-semana">4hrs</p>
         <p class="hora hora-principal hora-principal-mes oculto"> 11hrs </p>
@@ -97,7 +109,10 @@
       <img src="./images/icon-social.svg" class="icon-social">
 
       <div class="informacao">
-        <h1 class="titulo-informacao">Social</h1>
+        <div class="titulo--informacao">
+          <h1 class="titulo-informacao">Social</h1>
+          <img src="./images/icon-ellipsis.svg" class="icon-conf">
+        </div>
         <p class="hora hora-principal hora-principal-dia oculto"> 1hr </p>
         <p class="hora hora-principal hora-principal-semana">5hrs</p>
         <p class="hora hora-principal hora-principal-mes oculto"> 21hrs </p>
@@ -111,7 +126,10 @@
       <img src="./images/icon-self-care.svg" class="icon-self-care">
 
       <div class="informacao">
-        <h1 class="titulo-informacao">Self Care</h1>
+        <div class="titulo--informacao">
+          <h1 class="titulo-informacao">Self Care</h1>
+          <img src="./images/icon-ellipsis.svg" class="icon-conf">
+        </div>
         <p class="hora hora-principal hora-principal-dia oculto"> 0hr </p>
         <p class="hora hora-principal hora-principal-semana">2hrs</p>
         <p class="hora hora-principal hora-principal-mes oculto"> 7hrs </p>
@@ -123,9 +141,77 @@
 
   </main>
 
+  <div class="caixa-configuracao conf-work oculto">
+    <h1 class="titulo-caixa-conf">Add hours +</h1>
+    <fieldset class="selecionar-intervalo">
+      <label for="radio-dia"><input type="radio" name="intervalo1" value="add-dia" id="radio-dia">Daily</label>
+      <label for="radio-semana"><input type="radio" name="intervalo1" value="add-semana" id="radio-semana">Week</label> 
+      <label for="radio-mes"><input type="radio" name="intervalo1" value="add-mes" id="radio-mes">Monthly</label>
+    </fieldset>
+    <input type="number" class="quantidade-de-horas">
+    <button class="add-horas">ADD</button>
+    <button class="voltar">Back</button>
+  </div>
 
+  <div class="caixa-configuracao conf-play oculto">
+    <h1 class="titulo-caixa-conf">Add hours +</h1>
+    <fieldset class="selecionar-intervalo">
+      <label for="radio-dia"><input type="radio" name="intervalo2" value="add-dia" id="radio-dia">Daily</label>
+      <label for="radio-semana"><input type="radio" name="intervalo2" value="add-semana" id="radio-semana">Week</label> 
+      <label for="radio-mes"><input type="radio" name="intervalo2" value="add-mes" id="radio-mes">Monthly</label>
+    </fieldset>
+    <input type="number" class="quantidade-de-horas">
+    <button class="add-horas">ADD</button>
+    <button class="voltar">Back</button>
+  </div>
 
+  <div class="caixa-configuracao conf-study oculto">
+    <h1 class="titulo-caixa-conf">Add hours +</h1>
+    <fieldset class="selecionar-intervalo">
+      <label for="radio-dia"><input type="radio" name="intervalo3" value="add-dia" id="radio-dia">Daily</label>
+      <label for="radio-semana"><input type="radio" name="intervalo3" value="add-semana" id="radio-semana">Week</label> 
+      <label for="radio-mes"><input type="radio" name="intervalo3" value="add-mes" id="radio-mes">Monthly</label>
+    </fieldset>
+    <input type="number" class="quantidade-de-horas">
+    <button class="add-horas">ADD</button>
+    <button class="voltar">Back</button>
+  </div>
 
+  <div class="caixa-configuracao conf-exercise oculto">
+    <h1 class="titulo-caixa-conf">Add hours +</h1>
+    <fieldset class="selecionar-intervalo">
+      <label for="radio-dia"><input type="radio" name="intervalo4" value="add-dia" id="radio-dia">Daily</label>
+      <label for="radio-semana"><input type="radio" name="intervalo4" value="add-semana" id="radio-semana">Week</label> 
+      <label for="radio-mes"><input type="radio" name="intervalo4" value="add-mes" id="radio-mes">Monthly</label>
+    </fieldset>
+    <input type="number" class="quantidade-de-horas">
+    <button class="add-horas">ADD</button>
+    <button class="voltar">Back</button>
+  </div>
+
+  <div class="caixa-configuracao conf-social oculto">
+    <h1 class="titulo-caixa-conf">Add hours +</h1>
+    <fieldset class="selecionar-intervalo">
+      <label for="radio-dia"><input type="radio" name="intervalo5" value="add-dia" id="radio-dia">Daily</label>
+      <label for="radio-semana"><input type="radio" name="intervalo5" value="add-semana" id="radio-semana">Week</label> 
+      <label for="radio-mes"><input type="radio" name="intervalo5" value="add-mes" id="radio-mes">Monthly</label>
+    </fieldset>
+    <input type="number" class="quantidade-de-horas">
+    <button class="add-horas">ADD</button>
+    <button class="voltar">Back</button>
+  </div>
+
+  <div class="caixa-configuracao conf-self-care oculto">
+    <h1 class="titulo-caixa-conf">Add hours +</h1>
+    <fieldset class="selecionar-intervalo">
+      <label for="radio-dia"><input type="radio" name="intervalo6" value="add-dia" id="radio-dia">Daily</label>
+      <label for="radio-semana"><input type="radio" name="intervalo6" value="add-semana" id="radio-semana">Week</label> 
+      <label for="radio-mes"><input type="radio" name="intervalo6" value="add-mes" id="radio-mes">Monthly</label>
+    </fieldset>
+    <input type="number" class="quantidade-de-horas">
+    <button class="add-horas">ADD</button>
+    <button class="voltar">Back</button>
+  </div>
 
 
 

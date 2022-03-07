@@ -9,6 +9,77 @@ body {
 body:active{
     cursor: pointer;
 }
+.conf-work {
+    background: #d96c47;
+}
+.conf-play {
+    background: #3f9cbb;
+}
+.conf-study {
+    background: #f04667;
+}
+.conf-exercise {
+    background: #29ba66;
+}
+.conf-social {
+    background: #5a1cbb;
+}
+.conf-self-care {
+    background: #e6a532;
+}
+
+.caixa-configuracao {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    width: 320px;
+    height: 200px;
+    position: fixed;
+    top: calc((100vh - 200px) / 2);
+    right: calc((100vw - 320px) / 2);
+    border-radius: 20px;
+}
+.titulo-caixa-conf {
+    grid-column: span 3;
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: #1d204b;
+}
+.selecionar-intervalo {
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3rem;
+    color: #1d204b;
+    font-weight: 500;
+}
+.selecionar-intervalo input {
+    margin: 10px 5px;
+}
+.quantidade-de-horas {
+    grid-column: span 2;
+    margin: 5px 0px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.5rem;
+    color: #1d204b;
+    text-align: end;
+}
+.add-horas, .voltar{
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+}
+.add-horas {
+    background-color: #4bcf83;
+    color: #ffffff;
+}
 main {
     width: 80%;
     display: grid;
@@ -117,14 +188,14 @@ nav li {
     font-size: 3rem;
 }
 .titulo-informacao {
-    display: flex;
     font-weight: 500;
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
-.titulo-informacao::after {
-    content: url(./images/icon-ellipsis.svg);
-    margin-left: auto;
+.titulo--informacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media screen and (min-width:1400px) {
