@@ -88,41 +88,51 @@ class IntervalosDeTempo {
     this.social = so;
     this.selfCare = se
     }
+
+    addTimeDia(valor){
+        
+    }
+   
 }
 
-let daily = new IntervalosDeTempo('0hr', '0hr', '0hr', '0hr', '0hr', '0hr');
-let weekly = new IntervalosDeTempo('0hr', '0hr', '0hr', '0hr', '0hr', '0hr');
-let monthly = new IntervalosDeTempo('0hr', '0hr', '0hr', '0hr', '0hr', '0hr');
-let horariosSalvos = new RastreamentoDeTempo(daily, weekly, monthly)
 
-localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos))
+let horariosSalvos = JSON.parse(localStorage.getItem('horariosSalvos'))
+console.log(horariosSalvos)
+    let daily;
+    let weekly;
+    let monthly;
 
-document.querySelectorAll('.hora-principal-dia')[0].innerHTML = horariosSalvos.dia.work;
-document.querySelectorAll('.hora-principal-dia')[1].innerHTML = horariosSalvos.dia.play;
-document.querySelectorAll('.hora-principal-dia')[2].innerHTML = horariosSalvos.dia.study;
-document.querySelectorAll('.hora-principal-dia')[3].innerHTML = horariosSalvos.dia.exercise;
-document.querySelectorAll('.hora-principal-dia')[4].innerHTML = horariosSalvos.dia.social;
-document.querySelectorAll('.hora-principal-dia')[5].innerHTML = horariosSalvos.dia.selfCare;
 
-document.querySelectorAll('.hora-principal-semana')[0].innerHTML = horariosSalvos.semana.work;
-document.querySelectorAll('.hora-principal-semana')[1].innerHTML = horariosSalvos.semana.play;
-document.querySelectorAll('.hora-principal-semana')[2].innerHTML = horariosSalvos.semana.study;
-document.querySelectorAll('.hora-principal-semana')[3].innerHTML = horariosSalvos.semana.exercise;
-document.querySelectorAll('.hora-principal-semana')[4].innerHTML = horariosSalvos.semana.social;
-document.querySelectorAll('.hora-principal-semana')[5].innerHTML = horariosSalvos.semana.selfCare;
+if(!horariosSalvos){
+    daily = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    weekly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    monthly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    horariosSalvos = new RastreamentoDeTempo(daily, weekly, monthly)
+} else {
+    daily = horariosSalvos.dia;
+    weekly = horariosSalvos.semana;
+    monthly = horariosSalvos.mes;
+    console.log(weekly)
+}
 
-document.querySelectorAll('.hora-principal-mes')[0].innerHTML = horariosSalvos.mes.work;
-document.querySelectorAll('.hora-principal-mes')[1].innerHTML = horariosSalvos.mes.play;
-document.querySelectorAll('.hora-principal-mes')[2].innerHTML = horariosSalvos.mes.study;
-document.querySelectorAll('.hora-principal-mes')[3].innerHTML = horariosSalvos.mes.exercise;
-document.querySelectorAll('.hora-principal-mes')[4].innerHTML = horariosSalvos.mes.social;
-document.querySelectorAll('.hora-principal-mes')[5].innerHTML = horariosSalvos.mes.selfCare;
+
+const lista = ['work', 'play', 'study', 'exercise', 'social', 'selfCare']
+const horasDia = document.querySelectorAll('.hora-principal-dia');
+const horasSemana = document.querySelectorAll('.hora-principal-semana');
+const horasMes = document.querySelectorAll('.hora-principal-mes');
+
+for(let i=0; i < horasDia.length; i++ ){
+    horasDia[i].innerHTML = `${daily[lista[i]]} hrs`;
+    horasSemana[i].innerHTML = `${weekly[lista[i]]} hrs`;
+    horasMes[i].innerHTML = `${monthly[lista[i]]} hrs`;
+}
 
 
 const clickConf = document.querySelectorAll('.icon-conf');
 const caixaConf = document.querySelectorAll('.caixa-configuracao');
 const botaoVoltar = document.querySelectorAll('.voltar');
 const botaoAdd = document.querySelectorAll('.add-horas');
+
 
 for(let i=0; i < clickConf.length; i++){
     clickConf[i].onclick = function(){
@@ -135,17 +145,38 @@ for(let i=0; i < clickConf.length; i++){
     intervalo.addEventListener('change', function(ev){
         let selecao = ev.target.value
         botaoAdd[i].onclick = function() {
-            let horas = document.querySelectorAll('.quantidade-de-horas')[i].value;
-            console.log(selecao)
+            let horas = document.querySelectorAll('.quantidade-de-horas')[i].valueAsNumber
             if(selecao == 'add-dia'){
-                console.log('teste')
+                if(horas){
+                    daily[lista[i]] += horas;
+                    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos));
+                    horasDia[i].innerHTML = `${daily[lista[i]]} hrs`;
+                    caixaConf[i].classList.add('oculto');
+                } else {
+                    alert('Add time')
+                }          
             } else if(selecao == 'add-semana'){
-                console.log('teste2')
+                if(horas){
+                    weekly[lista[i]] += horas;
+                    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos));
+                    horasSemana[i].innerHTML = `${weekly[lista[i]]} hrs`;
+                    caixaConf[i].classList.add('oculto');
+                } else {
+                    alert('Add time')
+                } 
             } else if(selecao == 'add-mes'){
-                console.log('teste3')
-            } else if(!selecao){
-                alert('teste')
+                if(horas){
+                    monthly[lista[i]] += horas;
+                    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos))
+                    horasMes[i].innerHTML = `${monthly[lista[i]]} hrs`;
+                    caixaConf[i].classList.add('oculto');
+                } else {
+                    alert('Add time')
+                } 
             }
         }
     })
+    botaoAdd[i].onclick = function() {
+        alert('Select the range')
+    }
 }

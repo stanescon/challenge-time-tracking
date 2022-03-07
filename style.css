@@ -41,6 +41,9 @@ body:active{
     right: calc((100vw - 320px) / 2);
     border-radius: 20px;
 }
+.icon-conf{
+    padding: 10px;
+}
 .titulo-caixa-conf {
     grid-column: span 3;
     font-size: 2.5rem;
@@ -190,7 +193,6 @@ nav li {
 .titulo-informacao {
     font-weight: 500;
     font-size: 1.2rem;
-    margin-bottom: 10px;
 }
 .titulo--informacao {
     display: flex;
