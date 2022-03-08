@@ -95,13 +95,37 @@ class IntervalosDeTempo {
    
 }
 
+const data = new Date()
+
+let diasDoMes = localStorage.getItem('diasDoMes')
+let listaDiaDoMes = []
+
+if(!diasDoMes){
+    listaDiaDoMes = []
+} else if (diasDoMes.length == 1){
+    listaDiaDoMes.push(parseInt(diasDoMes, 10))
+} else {
+    listaDiaDoMes = diasDoMes.split(',', 1)
+    listaDiaDoMes[0] = parseInt(listaDiaDoMes[0], 10);
+    console.log(listaDiaDoMes)
+}
+
+listaDiaDoMes.unshift(data.getDate())
+localStorage.setItem('diasDoMes', listaDiaDoMes.toString());
+
+
+
+
+
+
+
+
+
 
 let horariosSalvos = JSON.parse(localStorage.getItem('horariosSalvos'))
-console.log(horariosSalvos)
-    let daily;
-    let weekly;
-    let monthly;
-
+let daily;
+let weekly;
+let monthly;
 
 if(!horariosSalvos){
     daily = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
@@ -112,8 +136,14 @@ if(!horariosSalvos){
     daily = horariosSalvos.dia;
     weekly = horariosSalvos.semana;
     monthly = horariosSalvos.mes;
-    console.log(weekly)
 }
+
+
+
+
+
+
+
 
 
 const lista = ['work', 'play', 'study', 'exercise', 'social', 'selfCare']
@@ -149,8 +179,12 @@ for(let i=0; i < clickConf.length; i++){
             if(selecao == 'add-dia'){
                 if(horas){
                     daily[lista[i]] += horas;
+                    weekly[lista[i]] += horas;
+                    monthly[lista[i]] += horas;
                     localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos));
                     horasDia[i].innerHTML = `${daily[lista[i]]} hrs`;
+                    horasSemana[i].innerHTML = `${weekly[lista[i]]} hrs`;
+                    horasMes[i].innerHTML = `${monthly[lista[i]]} hrs`;
                     caixaConf[i].classList.add('oculto');
                 } else {
                     alert('Add time')
@@ -158,8 +192,10 @@ for(let i=0; i < clickConf.length; i++){
             } else if(selecao == 'add-semana'){
                 if(horas){
                     weekly[lista[i]] += horas;
+                    monthly[lista[i]] += horas;
                     localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos));
                     horasSemana[i].innerHTML = `${weekly[lista[i]]} hrs`;
+                    horasMes[i].innerHTML = `${monthly[lista[i]]} hrs`;
                     caixaConf[i].classList.add('oculto');
                 } else {
                     alert('Add time')
