@@ -99,22 +99,51 @@ const data = new Date()
 
 let diasDoMes = localStorage.getItem('diasDoMes')
 let listaDiaDoMes = []
-
 if(!diasDoMes){
     listaDiaDoMes = []
-} else if (diasDoMes.length == 1){
-    listaDiaDoMes.push(parseInt(diasDoMes, 10))
 } else {
     listaDiaDoMes = diasDoMes.split(',', 1)
     listaDiaDoMes[0] = parseInt(listaDiaDoMes[0], 10);
-    console.log(listaDiaDoMes)
 }
-
-listaDiaDoMes.unshift(data.getDate())
+listaDiaDoMes.unshift(data.getDate())  // ESSA LISTA CONTEM O DIA DO MES ATUAL E O DIA DO MES DO ULTIMO ACESSO
 localStorage.setItem('diasDoMes', listaDiaDoMes.toString());
 
 
+let oneJan = new Date(data.getFullYear(),0,1); //aqui retorna o dia 01 - janeiro(0) - ano, no milisegundo 0
+let numeroDeDiasDoAno = Math.ceil((data - oneJan) / (24 * 60 * 60 * 1000)) // dta - oneJan retorna quantos milisegundos de 1 de janeiro ate dia atual, dividindo por 24(horas do dia), 60(minutos da hora), 60(segundos do minuto), 1000(milisegundos do segundo) obtemos a quantidade em dias
+let primeiroDomingo;
+let semanaDoAno;
+let listaSemanas = []
+let semanas = localStorage.getItem('semanas')
+if(!semanas){
+    listaSemanas = []
+} else {
+    listaSemanas = semanas.split(',', 1)
+    listaSemanas[0] = parseInt(listaSemanas[0], 10);
+}
+if(oneJan.getDay() == 0){
+    primeiroDomingo = 1
+    semanaDoAno = Math.ceil(numeroDeDiasDoAno / 7)
+} else {
+    primeiroDomingo = (7 - (oneJan.getDay() % 7)) + 1
+    semanaDoAno = Math.ceil((numeroDeDiasDoAno - primeiroDomingo - 1) / 7) + 1
+}
+listaSemanas.unshift(semanaDoAno) // ESSA LISTA CONTEM A SEMANA ATUAL E A SEMANA DO ULTIMO ACESSO
+localStorage.setItem('semanas', listaSemanas.toString());
 
+
+let meses = localStorage.getItem('meses');
+let mesAtual = data.getMonth()
+let listaMeses = []
+if(!meses){
+    listaMeses = []
+} else {
+    listaMeses = meses.split(',',1);
+    listaMeses[0] = parseInt(listaMeses[0], 10)
+}
+listaMeses.unshift(mesAtual) // ESSA LISTA CONTEM O MES ATUAL E O MES DO ULTIMO ACESSO
+localStorage.setItem('meses', listaMeses.toString())
+console.log(listaMeses)
 
 
 
