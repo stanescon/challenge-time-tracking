@@ -96,17 +96,20 @@ class IntervalosDeTempo {
 }
 
 const data = new Date()
+//const data = new Date(2022, 2, 9, 10)
 
-let diasDoMes = localStorage.getItem('diasDoMes')
-let listaDiaDoMes = []
-if(!diasDoMes){
-    listaDiaDoMes = []
-} else {
-    listaDiaDoMes = diasDoMes.split(',', 1)
-    listaDiaDoMes[0] = parseInt(listaDiaDoMes[0], 10);
-}
-listaDiaDoMes.unshift(data.getDate())  // ESSA LISTA CONTEM O DIA DO MES ATUAL E O DIA DO MES DO ULTIMO ACESSO
-localStorage.setItem('diasDoMes', listaDiaDoMes.toString());
+
+
+// let diasDoMes = localStorage.getItem('diasDoMes')
+// let listaDiaDoMes = []
+// if(!diasDoMes){
+//     listaDiaDoMes = []
+// } else {
+//     listaDiaDoMes = diasDoMes.split(',', 1)
+//     listaDiaDoMes[0] = parseInt(listaDiaDoMes[0], 10);
+// }
+// listaDiaDoMes.unshift(data.getDate())  // ESSA LISTA CONTEM O DIA DO MES ATUAL E O DIA DO MES DO ULTIMO ACESSO
+// localStorage.setItem('diasDoMes', listaDiaDoMes.toString());
 
 
 let oneJan = new Date(data.getFullYear(),0,1); //aqui retorna o dia 01 - janeiro(0) - ano, no milisegundo 0
@@ -114,12 +117,16 @@ let numeroDeDiasDoAno = Math.ceil((data - oneJan) / (24 * 60 * 60 * 1000)) // dt
 let primeiroDomingo;
 let semanaDoAno;
 let listaSemanas = []
+let listaDiasDoAno = []
 let semanas = localStorage.getItem('semanas')
+let dias = localStorage.getItem('dias')
 if(!semanas){
     listaSemanas = []
 } else {
-    listaSemanas = semanas.split(',', 1)
+    listaSemanas = semanas.split(',', 1);
     listaSemanas[0] = parseInt(listaSemanas[0], 10);
+    listaDiasDoAno = dias.split(',', 1);
+    listaDiasDoAno[0] = parseInt(listaDiasDoAno[0], 10);
 }
 if(oneJan.getDay() == 0){
     primeiroDomingo = 1
@@ -130,6 +137,8 @@ if(oneJan.getDay() == 0){
 }
 listaSemanas.unshift(semanaDoAno) // ESSA LISTA CONTEM A SEMANA ATUAL E A SEMANA DO ULTIMO ACESSO
 localStorage.setItem('semanas', listaSemanas.toString());
+listaDiasDoAno.unshift(numeroDeDiasDoAno) // ESSA LISTA CONTEM O DIA DO ANO ATUAL E O DIA DO ANO DO ULTIMO ACESSO
+localStorage.setItem('dias', listaDiasDoAno.toString())
 
 
 let meses = localStorage.getItem('meses');
@@ -143,11 +152,19 @@ if(!meses){
 }
 listaMeses.unshift(mesAtual) // ESSA LISTA CONTEM O MES ATUAL E O MES DO ULTIMO ACESSO
 localStorage.setItem('meses', listaMeses.toString())
-console.log(listaMeses)
 
 
+console.log(listaDiasDoAno);
+console.log(listaSemanas);
+console.log(listaMeses);
 
-
+const lista = ['work', 'play', 'study', 'exercise', 'social', 'selfCare']
+const horasDia = document.querySelectorAll('.hora-principal-dia');
+const horasSemana = document.querySelectorAll('.hora-principal-semana');
+const horasMes = document.querySelectorAll('.hora-principal-mes');
+const ultimoDia = document.querySelectorAll('.hora-ultimo-dia');
+const ultimaSemana = document.querySelectorAll('.hora-ultima-semana');
+const ultimoMes = document.querySelectorAll('.hora-ultimo-mes');
 
 
 
@@ -155,30 +172,53 @@ let horariosSalvos = JSON.parse(localStorage.getItem('horariosSalvos'))
 let daily;
 let weekly;
 let monthly;
+let lastDay;
+let lastWeekly;
+let lastMonthly;
 
-if(!horariosSalvos){
-    daily = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
-    weekly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
-    monthly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
-    horariosSalvos = new RastreamentoDeTempo(daily, weekly, monthly)
-} else {
+
+function mudarDia() {
+    lastDay = horariosSalvos.dia;
+    for(let i = 0; i < 6; i++){
+        ultimoDia[i].innerHTML = `${lastDay[lista[i]]} hrs`
+    }
+    for(let i = 0; i < 6; i++){
+        horariosSalvos.dia[lista[i]] = 0
+    }
+    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos))
+    horariosSalvos = JSON.parse(localStorage.getItem('horariosSalvos'))
     daily = horariosSalvos.dia;
     weekly = horariosSalvos.semana;
     monthly = horariosSalvos.mes;
 }
 
 
+if(!horariosSalvos){
+    daily = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    weekly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    monthly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    horariosSalvos = new RastreamentoDeTempo(daily, weekly, monthly)
+} 
+// else {
+//     daily = horariosSalvos.dia;
+//     weekly = horariosSalvos.semana;
+//     monthly = horariosSalvos.mes;
+// }
+
+if(dias && listaDiasDoAno[0] == listaDiasDoAno[1]){
+    daily = horariosSalvos.dia;
+    weekly = horariosSalvos.semana;
+    monthly = horariosSalvos.mes;
+    console.log('teste1')
+} else if(dias && listaDiasDoAno[0] != listaDiasDoAno[1] && listaMeses[0] == listaMeses[1]){
+    console.log('teste2')
+    if(listaDiasDoAno[0] == listaDiasDoAno[1] + 1){
+        mudarDia()
+    }
+}
 
 
 
-
-
-
-
-const lista = ['work', 'play', 'study', 'exercise', 'social', 'selfCare']
-const horasDia = document.querySelectorAll('.hora-principal-dia');
-const horasSemana = document.querySelectorAll('.hora-principal-semana');
-const horasMes = document.querySelectorAll('.hora-principal-mes');
 
 for(let i=0; i < horasDia.length; i++ ){
     horasDia[i].innerHTML = `${daily[lista[i]]} hrs`;
