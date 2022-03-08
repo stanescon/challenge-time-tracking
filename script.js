@@ -66,10 +66,16 @@ class RastreamentoDeTempo {
     dia;
     semana;
     mes;
-    constructor(dia, semana, mes){
+    ultimoDia;
+    ultimaSemana;
+    ultimoMes;
+    constructor(dia, semana, mes, ultimoDia, ultimaSemana, ultimoMes){
     this.dia = dia;
     this.semana = semana;
     this.mes = mes;
+    this.ultimoDia = ultimoDia;
+    this.ultimaSemana = ultimaSemana;
+    this.ultimoMes = ultimoMes
     }
 }
 
@@ -95,8 +101,8 @@ class IntervalosDeTempo {
    
 }
 
-const data = new Date()
-//const data = new Date(2022, 2, 9, 10)
+//const data = new Date()
+const data = new Date(2022, 2, 13, 10)
 
 
 
@@ -133,7 +139,7 @@ if(oneJan.getDay() == 0){
     semanaDoAno = Math.ceil(numeroDeDiasDoAno / 7)
 } else {
     primeiroDomingo = (7 - (oneJan.getDay() % 7)) + 1
-    semanaDoAno = Math.ceil((numeroDeDiasDoAno - primeiroDomingo - 1) / 7) + 1
+    semanaDoAno = Math.ceil((numeroDeDiasDoAno - primeiroDomingo + 1) / 7) + 1
 }
 listaSemanas.unshift(semanaDoAno) // ESSA LISTA CONTEM A SEMANA ATUAL E A SEMANA DO ULTIMO ACESSO
 localStorage.setItem('semanas', listaSemanas.toString());
@@ -176,44 +182,120 @@ let lastDay;
 let lastWeekly;
 let lastMonthly;
 
-
-function mudarDia() {
-    lastDay = horariosSalvos.dia;
-    for(let i = 0; i < 6; i++){
-        ultimoDia[i].innerHTML = `${lastDay[lista[i]]} hrs`
+function mudarDia(resposta) {
+    let modo = resposta
+    if(modo == 'consecutivo'){
+        lastDay = horariosSalvos.ultimoDia;
+        for(let i = 0; i < 6; i++){
+        lastDay[lista[i]] = horariosSalvos.dia[lista[i]];
+        }
+    } else if(modo == 'naoconsecutivo'){
+        lastDay = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
     }
+    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos))
+    
     for(let i = 0; i < 6; i++){
         horariosSalvos.dia[lista[i]] = 0
     }
     localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos))
+    
     horariosSalvos = JSON.parse(localStorage.getItem('horariosSalvos'))
     daily = horariosSalvos.dia;
     weekly = horariosSalvos.semana;
     monthly = horariosSalvos.mes;
+    lastWeekly = horariosSalvos.ultimaSemana;
+    lastMonthly = horariosSalvos.ultimoMes;
 }
+function mudarSemana(resposta) {
+    let modo = resposta
+    if(modo == 'consecutivo'){
+        lastWeekly = horariosSalvos.ultimaSemana;
+        for(let i = 0; i < 6; i++){
+            lastWeekly[lista[i]] = horariosSalvos.semana[lista[i]];
+        }
+    } else if(modo == 'naoconsecutivo'){
+        lastWeekly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    }    
+    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos));
+    
+    for(let i = 0; i < 6; i++){
+        horariosSalvos.semana[lista[i]] = 0
+    }
+    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos))
+    
+    horariosSalvos = JSON.parse(localStorage.getItem('horariosSalvos'))
+    daily = horariosSalvos.dia;
+    weekly = horariosSalvos.semana;
+    monthly = horariosSalvos.mes;
+    lastDay = horariosSalvos.ultimoDia;
+    lastMonthly = horariosSalvos.ultimoMes;
+}
+function mudarMes(resposta){
+    let modo = resposta
+    if(modo == 'consecutivo'){
+        lastMonthly = horariosSalvos.ultimoMes;
+        for(let i = 0; i < 6; i++){
+            lastMonthly[lista[i]] = horariosSalvos.mes[lista[i]];
+        }
+    } else if(modo == 'naoconsecutivo'){
+        lastMonthly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    }    
+    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos));
+    
+    for(let i = 0; i < 6; i++){
+        horariosSalvos.mes[lista[i]] = 0
+    }
+    localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos))
+    
+    horariosSalvos = JSON.parse(localStorage.getItem('horariosSalvos'))
+    daily = horariosSalvos.dia;
+    weekly = horariosSalvos.semana;
+    monthly = horariosSalvos.mes;
+    lastDay = horariosSalvos.ultimoDia;
+    lastWeekly = horariosSalvos.ultimaSemana;
+}
+
+
 
 
 if(!horariosSalvos){
     daily = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
     weekly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
     monthly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
-    horariosSalvos = new RastreamentoDeTempo(daily, weekly, monthly)
+    lastDay = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    lastWeekly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    lastMonthly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+    horariosSalvos = new RastreamentoDeTempo(daily, weekly, monthly, lastDay, lastWeekly, lastMonthly)
 } 
 // else {
 //     daily = horariosSalvos.dia;
 //     weekly = horariosSalvos.semana;
 //     monthly = horariosSalvos.mes;
+//     lastDay = horariosSalvos.ultimoDia;
+//     lastWeekly = horariosSalvos.ultimaSemana;
+//     lastMonthly = horariosSalvos.ultimoMes;
 // }
+
 
 if(dias && listaDiasDoAno[0] == listaDiasDoAno[1]){
     daily = horariosSalvos.dia;
     weekly = horariosSalvos.semana;
     monthly = horariosSalvos.mes;
-    console.log('teste1')
-} else if(dias && listaDiasDoAno[0] != listaDiasDoAno[1] && listaMeses[0] == listaMeses[1]){
-    console.log('teste2')
+    lastDay = horariosSalvos.ultimoDia;
+    lastWeekly = horariosSalvos.ultimaSemana;
+    lastMonthly = horariosSalvos.ultimoMes;
+} else if(dias && listaDiasDoAno[0] != listaDiasDoAno[1] && listaSemanas[0] == listaSemanas[1]){
     if(listaDiasDoAno[0] == listaDiasDoAno[1] + 1){
-        mudarDia()
+        mudarDia('consecutivo')
+    } else {
+        mudarDia('naoconsecutivo')
+
+    }
+} else if(dias && listaDiasDoAno[0] != listaDiasDoAno[1] && listaSemanas[0] != listaSemanas[1]){
+    if(listaSemanas[0] == listaSemanas[1] + 1){
+        mudarSemana('consecutivo')
+    } else {
+        mudarSemana('naoconsecutivo')
     }
 }
 
@@ -224,6 +306,9 @@ for(let i=0; i < horasDia.length; i++ ){
     horasDia[i].innerHTML = `${daily[lista[i]]} hrs`;
     horasSemana[i].innerHTML = `${weekly[lista[i]]} hrs`;
     horasMes[i].innerHTML = `${monthly[lista[i]]} hrs`;
+    ultimoDia[i].innerHTML = ` Last day - ${lastDay[lista[i]]} hrs`;
+    ultimaSemana[i].innerHTML = ` Last Week - ${lastWeekly[lista[i]]} hrs`;
+    ultimoMes[i].innerHTML = ` Last Monthly - ${lastMonthly[lista[i]]} hrs`;
 }
 
 
