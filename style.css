@@ -266,8 +266,10 @@ nav li {
         width: 317px;
         left: -1px;
     }
-    .titulo-informacao {
+    .titulo--informacao{
         grid-column: span 2;
+    }
+    .titulo-informacao {
         margin-bottom: 0px;
     }
     .hora-ultimo-dia, .hora-ultima-semana, .hora-ultimo-mes {
