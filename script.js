@@ -102,7 +102,7 @@ class IntervalosDeTempo {
 }
 
 //const data = new Date()
-const data = new Date(2022, 2, 13, 10)
+const data = new Date()
 
 
 
@@ -187,10 +187,13 @@ function mudarDia(resposta) {
     if(modo == 'consecutivo'){
         lastDay = horariosSalvos.ultimoDia;
         for(let i = 0; i < 6; i++){
-        lastDay[lista[i]] = horariosSalvos.dia[lista[i]];
+            lastDay[lista[i]] = horariosSalvos.dia[lista[i]];
         }
     } else if(modo == 'naoconsecutivo'){
-        lastDay = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+        lastDay = horariosSalvos.ultimoDia;
+        for(let i = 0; i < 6; i++){
+            lastDay[lista[i]] = 0;
+        }
     }
     localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos))
     
@@ -214,7 +217,10 @@ function mudarSemana(resposta) {
             lastWeekly[lista[i]] = horariosSalvos.semana[lista[i]];
         }
     } else if(modo == 'naoconsecutivo'){
-        lastWeekly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+        lastWeekly = horariosSalvos.ultimaSemana;
+        for(let i = 0; i < 6; i++){
+            lastWeekly[lista[i]] = 0;
+        }
     }    
     localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos));
     
@@ -238,7 +244,10 @@ function mudarMes(resposta){
             lastMonthly[lista[i]] = horariosSalvos.mes[lista[i]];
         }
     } else if(modo == 'naoconsecutivo'){
-        lastMonthly = new IntervalosDeTempo(0, 0, 0, 0, 0, 0);
+        lastMonthly = horariosSalvos.ultimoMes;
+        for(let i = 0; i < 6; i++){
+            lastMonthly[lista[i]] = 0;
+        }
     }    
     localStorage.setItem('horariosSalvos', JSON.stringify(horariosSalvos));
     
@@ -284,18 +293,76 @@ if(dias && listaDiasDoAno[0] == listaDiasDoAno[1]){
     lastDay = horariosSalvos.ultimoDia;
     lastWeekly = horariosSalvos.ultimaSemana;
     lastMonthly = horariosSalvos.ultimoMes;
-} else if(dias && listaDiasDoAno[0] != listaDiasDoAno[1] && listaSemanas[0] == listaSemanas[1]){
+} else if(dias && listaDiasDoAno[0] != listaDiasDoAno[1] && listaSemanas[0] == listaSemanas[1] && listaMeses[0] == listaMeses[1]){
     if(listaDiasDoAno[0] == listaDiasDoAno[1] + 1){
         mudarDia('consecutivo')
     } else {
         mudarDia('naoconsecutivo')
 
     }
-} else if(dias && listaDiasDoAno[0] != listaDiasDoAno[1] && listaSemanas[0] != listaSemanas[1]){
-    if(listaSemanas[0] == listaSemanas[1] + 1){
+} else if(dias && listaSemanas[0] != listaSemanas[1]){
+    if(listaMeses[0] == listaMeses[1]){
+        if(listaDiasDoAno[0] == listaDiasDoAno[1] + 1){
+        mudarDia('consetivo')
         mudarSemana('consecutivo')
-    } else {
+        } else if(listaSemanas[0] == listaSemanas[1] + 1) {
+        mudarDia('naoconsecutivo')
+        mudarSemana('consecutivo')
+        } else {
+        mudarDia('naoconsecutivo')
         mudarSemana('naoconsecutivo')
+        }   
+    } else {
+        if(listaDiasDoAno[0] == listaDiasDoAno[1] + 1){
+            mudarDia('consetivo')
+            mudarSemana('consecutivo')
+            mudarMes('consecutivo')
+        } else if(listaSemanas[0] == listaSemanas[1] + 1) {
+            mudarDia('naoconsecutivo')
+            mudarSemana('consecutivo')
+            mudarMes('consecutivo')
+        } else if(listaMeses[0] == listaMeses[1] + 1) {
+            mudarDia('naoconsecutivo')
+            mudarSemana('naoconsecutivo')
+            mudarMes('consecutivo')
+        } else {
+            mudarDia('naoconsecutivo')
+            mudarSemana('naoconsecutivo')
+            mudarMes('naoconsecutivo')
+        }
+    }
+} else if(dias && listaMeses[0] != listaMeses[1]){
+    if(listaSemanas[0] == listaSemanas[1]){
+        if(listaDiasDoAno[0] == listaDiasDoAno[1] + 1){
+            mudarDia('consecutivo')
+            mudarMes('consecutivo')
+        } else if(listaMeses[0] == listaMeses[1] + 1) {
+            console.log('teste123')
+            mudarDia('naoconsecutivo')
+            mudarMes('consecutivo')
+        } else if(listaMeses[0] != listaMeses[1] + 1){
+            mudarDia('naoconsecutivo')
+            mudarMes('naoconsecutivo')
+        }
+    } else if(listaSemanas[0] != listaSemanas[1]){
+        if(listaDiasDoAno[0] == listaDiasDoAno[1] + 1){
+            mudarDia('consecutivo')
+            mudarSemana('consecutivo')
+            mudarMes('consecutivo')
+        } else if(listaSemanas[0] == listaSemanas[1] + 1){
+            mudarDia('naoconsecutivo')
+            mudarSemana('consecutivo')
+            mudarMes('consecutivo')
+        }
+        else if(listaMeses[0] == listaMeses[1] + 1){
+            mudarDia('naoconsecutivo')
+            mudarSemana('naoconsecutivo')
+            mudarMes('consecutivo')
+        } else {
+            mudarDia('naoconsecutivo')
+            mudarSemana('naoconsecutivo')
+            mudarMes('naoconsecutivo')
+        }
     }
 }
 
