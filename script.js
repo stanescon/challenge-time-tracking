@@ -62,6 +62,32 @@ menuMes.onclick = function () {
     }
 }
 
+const nomeUsuario = document.querySelector('.nome-usuario')
+const botaoConfUsuario = document.querySelector('.icon-conf-usuario')
+const botaoVoltarUsuario = document.querySelector('.voltar-usuario')
+const botaoSaveUsuario = document.querySelector('.salvar')
+
+nomeUsuario.innerHTML = localStorage.getItem('nomeUsuario');
+
+botaoConfUsuario.onclick = function(){
+    document.querySelector('.caixa-configuracao-usuario').classList.remove('oculto')
+}
+botaoVoltarUsuario.onclick = function(){
+    document.querySelector('.caixa-configuracao-usuario').classList.add('oculto')
+}
+botaoSaveUsuario.onclick = function(){
+    const inputNome = document.querySelector('.input-nome-usuario');
+    if(inputNome.value){
+        nomeUsuario.innerHTML = inputNome.value
+        localStorage.setItem('nomeUsuario', inputNome.value)
+    } else {
+        alert('Name cannot be empty')
+    }
+    document.querySelector('.caixa-configuracao-usuario').classList.add('oculto')
+}
+
+
+
 class RastreamentoDeTempo {
     dia;
     semana;
