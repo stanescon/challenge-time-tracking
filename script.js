@@ -62,12 +62,18 @@ menuMes.onclick = function () {
     }
 }
 
-const nomeUsuario = document.querySelector('.nome-usuario')
-const botaoConfUsuario = document.querySelector('.icon-conf-usuario')
-const botaoVoltarUsuario = document.querySelector('.voltar-usuario')
-const botaoSaveUsuario = document.querySelector('.salvar')
+const nomeUsuario = document.querySelector('.nome-usuario');
+const fotoUsuario = document.querySelector('.foto-perfil');
+const botaoConfUsuario = document.querySelector('.icon-conf-usuario');
+const botaoVoltarUsuario = document.querySelector('.voltar-usuario');
+const botaoSaveUsuario = document.querySelector('.salvar');
 
+if(localStorage.getItem('nomeUsuario')){
 nomeUsuario.innerHTML = localStorage.getItem('nomeUsuario');
+}
+if(localStorage.getItem('fotoUsuario')){
+    fotoUsuario.innerHTML = `<img src="${localStorage.getItem('fotoUsuario')}" class="imagem-perfil">`
+}
 
 botaoConfUsuario.onclick = function(){
     document.querySelector('.caixa-configuracao-usuario').classList.remove('oculto')
@@ -77,13 +83,21 @@ botaoVoltarUsuario.onclick = function(){
 }
 botaoSaveUsuario.onclick = function(){
     const inputNome = document.querySelector('.input-nome-usuario');
-    if(inputNome.value){
+    const inputFoto = document.querySelector('.input-foto-usuario');
+    if(inputNome.value && inputFoto.value){
         nomeUsuario.innerHTML = inputNome.value
         localStorage.setItem('nomeUsuario', inputNome.value)
-    } else {
+        fotoUsuario.innerHTML = `<img src="${inputFoto.value}" class="imagem-perfil">`
+        localStorage.setItem('fotoUsuario', inputFoto.value)
+        document.querySelector('.caixa-configuracao-usuario').classList.add('oculto')
+        console.log(inputFoto.value)
+    }else if(inputNome.value){
+        nomeUsuario.innerHTML = inputNome.value
+        localStorage.setItem('nomeUsuario', inputNome.value)
+        document.querySelector('.caixa-configuracao-usuario').classList.add('oculto')
+    }else {
         alert('Name cannot be empty')
     }
-    document.querySelector('.caixa-configuracao-usuario').classList.add('oculto')
 }
 
 
@@ -127,21 +141,8 @@ class IntervalosDeTempo {
    
 }
 
-//const data = new Date()
 const data = new Date()
 
-
-
-// let diasDoMes = localStorage.getItem('diasDoMes')
-// let listaDiaDoMes = []
-// if(!diasDoMes){
-//     listaDiaDoMes = []
-// } else {
-//     listaDiaDoMes = diasDoMes.split(',', 1)
-//     listaDiaDoMes[0] = parseInt(listaDiaDoMes[0], 10);
-// }
-// listaDiaDoMes.unshift(data.getDate())  // ESSA LISTA CONTEM O DIA DO MES ATUAL E O DIA DO MES DO ULTIMO ACESSO
-// localStorage.setItem('diasDoMes', listaDiaDoMes.toString());
 
 
 let oneJan = new Date(data.getFullYear(),0,1); //aqui retorna o dia 01 - janeiro(0) - ano, no milisegundo 0

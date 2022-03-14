@@ -48,8 +48,8 @@ body:active{
     justify-content: center;
     background-color: #5746ea;
     padding: 10px;
-    width: 320px;
-    height: 200px;
+    width: 350px;
+    height: 300px;
     position: fixed;
     top: calc((100vh - 200px) / 2);
     right: calc((100vw - 320px) / 2);
@@ -59,7 +59,7 @@ body:active{
     color: #ffffff;
     font-weight: 300;
 }
-.input-nome-usuario {
+.input-nome-usuario, .input-foto-usuario {
     margin: 10px 0;
     font-size: 1.2rem;
 }
